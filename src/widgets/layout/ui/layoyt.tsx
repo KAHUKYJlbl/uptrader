@@ -1,4 +1,4 @@
-import { AppBar, Box, Container, SvgIcon, Toolbar, Typography } from '@mui/material';
+import { AppBar, Container } from '@mui/material';
 import { Svg } from '../../../shared/ui/svg';
 
 type LayoutProps = {

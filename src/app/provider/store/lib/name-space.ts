@@ -1,3 +1,5 @@
 export enum NameSpace {
-  Placeholder = 'Placeholder',
+  Projects = 'Projects',
+  Tasks = 'Tasks',
+  Comments = 'Comments',
 }

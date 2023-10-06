@@ -1,7 +1,5 @@
-# Custom Vite setup
-# TypeScript + React + Redux + RTK
-
----
+_Custom Vite setup_
+_TypeScript + React + Redux + RTK_
 
 *UpTrader SPA TODO App (dragable)*
-
+---

@@ -4,6 +4,7 @@ import { MainPage } from '../../../../pages/main-page';
 import { NotFound } from '../../../../pages/not-found';
 
 import { AppRoute } from '../lib/routes';
+import { ProjectsPage } from '../../../../pages/projects-page';
 
 export const AppRouter = createBrowserRouter(
   createRoutesFromElements(
@@ -12,6 +13,12 @@ export const AppRouter = createBrowserRouter(
         path={AppRoute.Main}
         element={
           <MainPage />
+        }
+      />
+      <Route
+        path={AppRoute.Projects}
+        element={
+          <ProjectsPage />
         }
       />
       <Route

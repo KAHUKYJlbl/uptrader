@@ -2,19 +2,19 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { NameSpace } from '../../../app/provider/store';
 
-import { ProjectType } from '../../../entities/project';
-import { PROJECTS } from '../../../app/data/projects';
+import { TaskType } from '../../../entities/task';
+import { TASKS } from '../../../app/data/tasks';
 
 type InitialState = {
-  projectsList: ProjectType[],
+  projectsList: TaskType [],
 };
 
 const initialState: InitialState = {
-  projectsList: PROJECTS,
+  projectsList: TASKS,
 }
 
-export const projectsSlice = createSlice({
-  name: NameSpace.Projects,
+export const tasksSlice = createSlice({
+  name: NameSpace.Tasks,
   initialState,
   reducers: {
     // cartItemAdd: (state, action: PayloadAction<RatedCamera>) => {

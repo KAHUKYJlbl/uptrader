@@ -2,10 +2,10 @@ import { Grid } from '@mui/material';
 
 import { useAppSelector } from '../../../shared/lib/hooks/use-app-selector';
 
-import { getProjects } from '../model/projects-selectors';
+import { getProjects } from '../model/tasks-selectors';
 import { Project } from '../../../entities/project';
 
-export const ProjectsList = (): JSX.Element => {
+export const TasksList = (): JSX.Element => {
   const projects = useAppSelector(getProjects);
 
   return (

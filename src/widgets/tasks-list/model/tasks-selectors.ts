@@ -1,5 +1,15 @@
+import { createSelector } from '@reduxjs/toolkit';
 import { NameSpace, State } from '../../../app/provider/store';
 
-import { ProjectType } from '../../../entities/project';
+import { TaskType } from '../../../entities/task';
 
-export const getProjects = (state: State): ProjectType[] => state[NameSpace.Projects].projectsList;
+export const getTasks = (state: State): TaskType[] => state[NameSpace.Tasks].tasksList;
+
+export const getTasksByProject = createSelector(
+  [
+    getTasks,
+    (state: State,id: string) => id,
+  ],
+  (tasks, id) => tasks.filter(( task ) => task.projectId === id)
+);
+

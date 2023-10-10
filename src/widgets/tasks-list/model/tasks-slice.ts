@@ -6,11 +6,11 @@ import { TaskType } from '../../../entities/task';
 import { TASKS } from '../../../app/data/tasks';
 
 type InitialState = {
-  projectsList: TaskType [],
+  tasksList: TaskType[],
 };
 
 const initialState: InitialState = {
-  projectsList: TASKS,
+  tasksList: TASKS,
 }
 
 export const tasksSlice = createSlice({

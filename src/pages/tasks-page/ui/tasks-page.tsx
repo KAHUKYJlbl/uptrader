@@ -1,10 +1,10 @@
 import { Layout } from '../../../widgets/layout';
-import { ProjectsList } from '../../../widgets/projects-list';
+import { TasksList } from '../../../widgets/tasks-list';
 
 const TasksPage = (): JSX.Element => {
   return (
     <Layout>
-      <ProjectsList />
+      <TasksList />
     </Layout>
   );
 };

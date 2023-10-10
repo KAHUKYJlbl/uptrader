@@ -2,9 +2,10 @@ import { Route, createBrowserRouter, createRoutesFromElements } from 'react-rout
 
 import { MainPage } from '../../../../pages/main-page';
 import { NotFound } from '../../../../pages/not-found';
+import { ProjectsPage } from '../../../../pages/projects-page';
+import { TasksPage } from '../../../../pages/tasks-page';
 
 import { AppRoute } from '../lib/routes';
-import { ProjectsPage } from '../../../../pages/projects-page';
 
 export const AppRouter = createBrowserRouter(
   createRoutesFromElements(
@@ -19,6 +20,12 @@ export const AppRouter = createBrowserRouter(
         path={AppRoute.Projects}
         element={
           <ProjectsPage />
+        }
+      />
+      <Route
+        path={AppRoute.Tasks}
+        element={
+          <TasksPage />
         }
       />
       <Route

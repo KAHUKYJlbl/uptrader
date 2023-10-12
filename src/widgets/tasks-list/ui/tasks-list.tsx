@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
-import { Grid, Paper, Typography } from '@mui/material';
+import { Box, Grid, Paper, Typography } from '@mui/material';
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 
 import { useAppSelector } from '../../../shared/lib/hooks/use-app-selector';
 import { Task } from '../../../entities/task';
@@ -14,43 +15,61 @@ export const TasksList = (): JSX.Element => {
 
   return (
     // общий контейнер
-    <Grid container spacing={2}>
-      {
-        statuses.map(( status, index, array ) => (
-          // контейнеры со статусами выполнения
-          <Grid container item xs={ 12 / array.length } key={status} direction={'column'}>
-            <Paper elevation={3} sx={{p: '10px', height: 1, minHeight: "80vh"}} >
-              <Typography
-                variant="h4"
-                gutterBottom
-                textAlign="center"
-                textTransform="uppercase"
-                color="#5accd0"
-                sx={{textDecorationLine: "underline"}}
-              >
-                {status}
-              </Typography>
+    <DragDropContext onDragEnd={() => null}>
+      <Grid container spacing={2}>
+        {
+          statuses.map(( status, index, array ) => (
+            // контейнеры со статусами выполнения
+            <Grid container item xs={ 12 / array.length } key={status} direction={'column'}>
+              <Paper elevation={3} sx={{p: '10px', height: 1, minHeight: "80vh"}} >
+                <Typography
+                  variant="h4"
+                  gutterBottom
+                  textAlign="center"
+                  textTransform="uppercase"
+                  color="#5accd0"
+                  sx={{textDecorationLine: "underline"}}
+                >
+                  {status}
+                </Typography>
 
-              {
-                tasks
-                  .filter(( task ) => task.status === status)
-                  .map(( task ) => (
-                    // таск-элемент
-                    <Grid
-                      item
-                      component="div"
-                      draggable
-                      key={task.id}
-                      sx={{ mb: "10px", cursor: "grab" }}
-                    >
-                      <Task task={task} />
-                    </Grid>
-                  ))
-              }
-            </Paper>
-          </Grid>
-        ))
-      }
-    </Grid>
+                <Droppable droppableId={status}>
+                  {(provided) => (
+                    <div ref={provided.innerRef} {...provided.droppableProps}>
+                      {
+                        tasks
+                          .filter(( task ) => task.status === status)
+                          .map(( task ) => (
+                            // таск-элемент
+                            <Draggable key={task.id} draggableId={task.id} index={task.priority}>
+                              {(provided) => (
+                                <div
+                                  draggable
+                                  {...provided.draggableProps}
+                                  {...provided.dragHandleProps}
+                                  ref={provided.innerRef}
+                                >
+                                  <Grid
+                                    item
+                                    component="div"
+                                    sx={{ mb: "10px", cursor: "grab" }}
+                                  >
+                                    <Task task={task} />
+                                  </Grid>
+                                </div>
+                              )}
+                            </Draggable>
+                          ))
+                      }
+                      {provided.placeholder}
+                    </div>
+                  )}
+                </Droppable>
+              </Paper>
+            </Grid>
+          ))
+        }
+      </Grid>
+    </DragDropContext>
   )
 }

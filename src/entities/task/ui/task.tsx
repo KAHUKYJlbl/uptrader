@@ -24,7 +24,6 @@ export const Task = ({ task }: TaskProps): JSX.Element => {
           size="small"
           variant="outlined"
           color='info'
-          // sx={{color: "#5accd0"}}
         >
           Edit
         </Button>

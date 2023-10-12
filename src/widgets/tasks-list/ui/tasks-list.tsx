@@ -1,3 +1,4 @@
+import { useParams } from 'react-router-dom';
 import { Grid, Paper, Typography } from '@mui/material';
 
 import { useAppSelector } from '../../../shared/lib/hooks/use-app-selector';
@@ -5,7 +6,6 @@ import { Task } from '../../../entities/task';
 
 import { getTasksByProject } from '../model/tasks-selectors';
 import { TASK_STATUSES } from '../lib/const';
-import { useParams } from 'react-router-dom';
 
 export const TasksList = (): JSX.Element => {
   const { id } = useParams();

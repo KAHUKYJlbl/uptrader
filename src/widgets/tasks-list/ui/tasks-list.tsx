@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
-import { Box, Grid, Paper, Typography } from '@mui/material';
-import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
+import { Grid, Paper, Typography } from '@mui/material';
+import { DragDropContext, Draggable, Droppable } from '@hello-pangea/dnd'
 
 import { useAppSelector } from '../../../shared/lib/hooks/use-app-selector';
 import { Task } from '../../../entities/task';
@@ -39,9 +39,9 @@ export const TasksList = (): JSX.Element => {
                       {
                         tasks
                           .filter(( task ) => task.status === status)
-                          .map(( task ) => (
+                          .map(( task, index ) => (
                             // таск-элемент
-                            <Draggable key={task.id} draggableId={task.id} index={task.priority}>
+                            <Draggable key={task.id} draggableId={task.id} index={index}>
                               {(provided) => (
                                 <div
                                   draggable

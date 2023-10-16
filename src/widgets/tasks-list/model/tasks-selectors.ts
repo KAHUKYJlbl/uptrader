@@ -10,6 +10,8 @@ export const getTasksByProject = createSelector(
     getTasks,
     (state: State,id: string) => id,
   ],
-  (tasks, id) => tasks.filter(( task ) => task.projectId === id)
+  (tasks, id) => tasks
+    .filter(( task ) => task.projectId === id)
+    .sort(( a, b ) => a.priority - b.priority)
 );
 

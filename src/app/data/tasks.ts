@@ -133,7 +133,7 @@ export const TASKS: TaskType[] = [
     dateStart: null,
     dateEnd: null,
     dutyTime: null,
-    priority: 0,
+    priority: 1,
     attached: [],
     status: 'queue',
     subtasks: [
@@ -165,7 +165,7 @@ export const TASKS: TaskType[] = [
     dateStart: null,
     dateEnd: null,
     dutyTime: null,
-    priority: 0,
+    priority: 1,
     attached: [],
     status: 'queue',
     subtasks: [

@@ -11,9 +11,9 @@ import { changePriority } from '../model/tasks-slice';
 import { TASK_STATUSES } from '../lib/const';
 
 export const TasksList = (): JSX.Element => {
-  const { id } = useParams();
+  const { id: projectId } = useParams();
   const dispatch = useAppDispatch();
-  const tasks = useAppSelector((state) => getTasksByProject(state, id || '0'));
+  const tasks = useAppSelector((state) => getTasksByProject(state, projectId || '0'));
   const statuses = Array.from(TASK_STATUSES);
 
   const handleDragEnd = ({ destination, source, draggableId }: DropResult) => {
@@ -58,7 +58,11 @@ export const TasksList = (): JSX.Element => {
 
                 <Droppable droppableId={status}>
                   {(provided) => (
-                    <div ref={provided.innerRef} {...provided.droppableProps}>
+                    <div
+                      className='h-100'
+                      ref={provided.innerRef}
+                      {...provided.droppableProps}
+                    >
                       {
                         tasks
                           .filter(( task ) => task.status === status)

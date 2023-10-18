@@ -40,9 +40,8 @@ export const TasksList = (): JSX.Element => {
     // общий контейнер
     <DragDropContext onDragEnd={handleDragEnd}>
       <Grid container spacing={2}>
-        {
+        { // контейнеры со статусами выполнения
           statuses.map(( status, _index, array ) => (
-            // контейнеры со статусами выполнения
             <Grid container item xs={ 12 / array.length } key={status} direction={'column'}>
               <Paper elevation={3} sx={{p: '10px', height: 1, minHeight: "80vh"}} >
                 <Typography
@@ -63,11 +62,10 @@ export const TasksList = (): JSX.Element => {
                       ref={provided.innerRef}
                       {...provided.droppableProps}
                     >
-                      {
+                      { // таск-элементы
                         tasks
                           .filter(( task ) => task.status === status)
                           .map(( task, index ) => (
-                            // таск-элемент
                             <Draggable key={task.id} draggableId={task.id} index={index}>
                               {(provided) => (
                                 <div

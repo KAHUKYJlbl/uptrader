@@ -3,7 +3,7 @@ import { TasksList } from '../../../widgets/tasks-list';
 
 const TasksPage = (): JSX.Element => {
   return (
-    <Layout>
+    <Layout page='task'>
       <TasksList />
     </Layout>
   );

@@ -20,7 +20,10 @@ export const projectsSlice = createSlice({
     createProject: (state, action: PayloadAction<ProjectType>) => {
       state.projectsList = state.projectsList.toSpliced(state.projectsList.length, 0, action.payload)
     },
+    deleteProject: (state, action: PayloadAction<ProjectType>) => {
+      state.projectsList = state.projectsList.filter(( project ) => project.id !== action.payload.id);
+    },
   },
 });
 
-export const { createProject } = projectsSlice.actions;
+export const { createProject, deleteProject } = projectsSlice.actions;

@@ -34,6 +34,12 @@ export const tasksSlice = createSlice({
           .map(( task, index ) => ({...task, priority: index}))
       ];
     },
+    createTask: (state, action: PayloadAction<TaskType>) => {
+      state.tasksList = state.tasksList.toSpliced(state.tasksList.length, 0, action.payload)
+    },
+    deleteTask: (state, action: PayloadAction<TaskType>) => {
+      state.tasksList = state.tasksList.filter(( task ) => task.id !== action.payload.id);
+    },
     // taskEdit: (state, action: PayloadAction<TaskType>) => {
     //   state.tasksList = state.tasksList
     //     .filter(( task ) => task.id !== action.payload.id)
@@ -42,4 +48,4 @@ export const tasksSlice = createSlice({
   },
 });
 
-export const { changePriority } = tasksSlice.actions;
+export const { changePriority, createTask, deleteTask } = tasksSlice.actions;

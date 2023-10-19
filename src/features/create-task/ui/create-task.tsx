@@ -4,20 +4,20 @@ import { nanoid } from 'nanoid';
 
 import { handleModalClose } from '../../../shared/lib/utils/toggle-modal';
 import { useAppDispatch } from '../../../shared/lib/hooks/use-app-dispatch';
-import { createProject } from '../../../widgets/projects-list';
+import { createTask } from '../../../widgets/tasks-list';
 
-type CreateProjectProps = {
+type CreateTaskProps = {
   open: boolean;
   setClose: Dispatch<SetStateAction<boolean>>;
 }
 
-export const CreateProject = ({ open, setClose }: CreateProjectProps): JSX.Element => {
+export const CreateTask = ({ open, setClose }: CreateTaskProps): JSX.Element => {
   const dispatch = useAppDispatch();
   const [name, setName] = useState('');
 
   const handleClick = () => {
     if (name) {
-      dispatch(createProject({name, id: nanoid()}));
+      dispatch(createTask({name, id: nanoid()}));
       setName('');
       handleModalClose(setClose);
     }
@@ -33,7 +33,7 @@ export const CreateProject = ({ open, setClose }: CreateProjectProps): JSX.Eleme
       fullWidth
     >
       <DialogTitle id="modal-modal-title">
-        New project
+        New task
       </DialogTitle>
 
       <DialogContent>

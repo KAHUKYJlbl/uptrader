@@ -1,11 +1,12 @@
 import { PropsWithChildren, useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import { AppBar, Box, Button, Container, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Fade, FormControl, InputLabel, Link, OutlinedInput, Toolbar } from '@mui/material';
+import { AppBar, Box, Button, Container, Link, Toolbar } from '@mui/material';
 
 import { Svg } from '../../../shared/ui/svg';
-import { AppRoute } from '../../../app/provider/router';
 import { handleModalOpen } from '../../../shared/lib/utils/toggle-modal';
+import { AppRoute } from '../../../app/provider/router';
 import { CreateProject } from '../../../features/create-project';
+import { CreateTask } from '../../../features/create-task';
 
 type LayoutProps = PropsWithChildren & {
   page: "project" | "task",
@@ -46,6 +47,7 @@ export const Layout = ({page, children}: LayoutProps): JSX.Element => {
       </Container>
 
       <CreateProject open={newProjectOpen} setClose={setNewProjectOpen} />
+      <CreateTask open={newTaskOpen} setClose={setNewTaskOpen} />
     </>
   )
 };

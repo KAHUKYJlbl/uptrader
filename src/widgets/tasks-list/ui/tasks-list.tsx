@@ -5,6 +5,7 @@ import { DragDropContext, Draggable, DropResult, Droppable } from '@hello-pangea
 import { useAppSelector } from '../../../shared/lib/hooks/use-app-selector';
 import { useAppDispatch } from '../../../shared/lib/hooks/use-app-dispatch';
 import { Task, TaskStatusType } from '../../../entities/task';
+import { Oops } from '../../oops';
 
 import { getTasksByProject } from '../model/tasks-selectors';
 import { changePriority } from '../model/tasks-slice';
@@ -13,8 +14,13 @@ import { TASK_STATUSES } from '../lib/const';
 export const TasksList = (): JSX.Element => {
   const { id: projectId } = useParams();
   const dispatch = useAppDispatch();
-  const tasks = useAppSelector((state) => getTasksByProject(state, projectId || '0'));
   const statuses = Array.from(TASK_STATUSES);
+
+  if ( !projectId ) {
+    return <Oops type='error-boundary' />
+  }
+
+  const tasks = useAppSelector((state) => getTasksByProject(state, projectId));
 
   const handleDragEnd = ({ destination, source, draggableId }: DropResult) => {
     if ( !destination ) {
@@ -39,11 +45,11 @@ export const TasksList = (): JSX.Element => {
   return (
     // общий контейнер
     <DragDropContext onDragEnd={handleDragEnd}>
-      <Grid container spacing={2}>
+      <Grid container spacing={3}>
         { // контейнеры со статусами выполнения
           statuses.map(( status, _index, array ) => (
             <Grid container item xs={ 12 / array.length } key={status} direction={'column'}>
-              <Paper elevation={3} sx={{p: '10px', height: 1, minHeight: "80vh"}} >
+              <Paper elevation={3} sx={{p: '10px', height: 1, minHeight: "75vh"}} >
                 <Typography
                   variant="h4"
                   gutterBottom

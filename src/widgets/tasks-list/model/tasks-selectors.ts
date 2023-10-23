@@ -15,3 +15,12 @@ export const getTasksByProject = createSelector(
     .sort(( a, b ) => a.priority - b.priority)
 );
 
+export const getQueuePriority = createSelector(
+  [
+    getTasks,
+    (state: State,id: string) => id,
+  ],
+  (tasks, id) => tasks
+    .filter(( task ) => task.projectId === id && task.status === 'queue')
+    .length
+);

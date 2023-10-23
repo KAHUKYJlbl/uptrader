@@ -8,7 +8,6 @@ import { handleModalClose } from '../../../shared/lib/utils/toggle-modal';
 import { useAppDispatch } from '../../../shared/lib/hooks/use-app-dispatch';
 import { createTask, getQueuePriority } from '../../../widgets/tasks-list';
 import { TaskForm } from '../lib/types/task-form';
-import { Oops } from '../../../widgets/oops';
 import { useAppSelector } from '../../../shared/lib/hooks/use-app-selector';
 
 type CreateTaskProps = {
@@ -17,7 +16,7 @@ type CreateTaskProps = {
 }
 
 export const CreateTask = ({ open, setClose }: CreateTaskProps): JSX.Element => {
-  const { id: projectId } = useParams();
+  const { id: projectId = '0' } = useParams();
   const dispatch = useAppDispatch();
   const { register, handleSubmit, reset } = useForm<TaskForm>();
   const [ fieldErrors, setFieldErrors ] = useState({
@@ -27,19 +26,8 @@ export const CreateTask = ({ open, setClose }: CreateTaskProps): JSX.Element => 
     subtasks: false,
     });
 
-  if (!projectId) {
-    return <Oops type='error-boundary' />
-  }
 
   const priority = useAppSelector((state) => getQueuePriority(state, projectId));
-
-  // const handleClick = () => {
-  //   if (name) {
-  //     dispatch(createTask({name, id: nanoid()}));
-  //     setName('');
-  //     handleModalClose(setClose);
-  //   }
-  // }
 
   const onFormSubmit: SubmitHandler<TaskForm> = (data) => {
     dispatch(createTask({

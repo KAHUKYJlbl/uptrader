@@ -8,7 +8,7 @@ export const getTasks = (state: State): TaskType[] => state[NameSpace.Tasks].tas
 export const getTasksByProject = createSelector(
   [
     getTasks,
-    (state: State,id: string) => id,
+    (_state: State, id: string) => id,
   ],
   (tasks, id) => tasks
     .filter(( task ) => task.projectId === id)
@@ -18,7 +18,7 @@ export const getTasksByProject = createSelector(
 export const getQueuePriority = createSelector(
   [
     getTasks,
-    (state: State,id: string) => id,
+    (_state: State, id: string) => id,
   ],
   (tasks, id) => tasks
     .filter(( task ) => task.projectId === id && task.status === 'queue')
